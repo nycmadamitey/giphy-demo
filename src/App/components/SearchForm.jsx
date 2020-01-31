@@ -4,7 +4,7 @@ import { ApiLink, ApiKey } from '../constants';
 
 function SearchForm() {
   const [term, setTerm] = useState('');
-  const {results, setResults} = useState({});
+  const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
 
@@ -24,9 +24,9 @@ function SearchForm() {
     )
       .then(response => response.json())
       .then(response => {
+        setResults(response.data);
         setIsLoading(false);
         setShowResults(true);
-        setResults(response.data);
         console.log('called', response);
       })
       .catch(error => console.log(error));

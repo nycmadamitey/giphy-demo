@@ -5,11 +5,15 @@ function SearchResults(props) {
     <div>
       {props.results && props.results.map(item => {
         return(
-          <p key={item}>{item}</p>
+          <img
+            key={item.id}
+            src={item.images['fixed_height'].url}
+            alt={item.title}
+          />
         )
       })}
 
-      {!props.results &&
+      {!props.results.length &&
         <div>
           No results for your search term. Please try again.
         </div>
