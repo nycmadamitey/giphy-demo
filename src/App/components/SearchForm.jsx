@@ -27,7 +27,6 @@ function SearchForm() {
         setResults(response.data);
         setIsLoading(false);
         setShowResults(true);
-        console.log('called', response);
       })
       .catch(error => console.log(error));
   }
