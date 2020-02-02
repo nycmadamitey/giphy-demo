@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import SearchResults from './SearchResults';
 import { ApiLink, ApiKey } from '../constants';
+import InputContainer from './InputContainer';
+import SearchInput from './SearchInput';
+import SearchButton from './SearchButton';
+import LoaderContainer from './LoaderContainer';
+import { ReactComponent as Loader } from '../images/loader.svg';
 
 function SearchForm() {
   const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  const rootElement = document.getElementById('root');
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -25,6 +31,7 @@ function SearchForm() {
       .then(response => response.json())
       .then(response => {
         setResults(response.data);
+        rootElement.classList.add('top-align');
         setIsLoading(false);
         setShowResults(true);
       })
@@ -34,17 +41,23 @@ function SearchForm() {
   return (
     <>
       <form autoComplete="off" onSubmit={handleFormSubmit}>
-        <input
-          type="text"
-          value={term}
-          onChange={handleInputChange}
-          placeholder="Enter term for gifs"
-          required
-        />
-        <input type="submit" value="Search" />
+        <InputContainer>
+          <SearchInput
+            type="text"
+            value={term}
+            onChange={handleInputChange}
+            placeholder="Enter term for gifs"
+            required
+          />
+          <SearchButton />
+        </InputContainer>
       </form>
 
-      {isLoading && <p>Fetching results</p>}
+      {isLoading &&
+        <LoaderContainer>
+          <Loader />
+        </LoaderContainer>
+      }
       {showResults && <SearchResults results={results} />}
     </>
   );
