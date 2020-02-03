@@ -1,16 +1,20 @@
 import React from 'react';
+import ResultsContainer from './ResultsContainer';
+import Result from './Result';
 
 function SearchResults(props) {
   return (
-    <div>
+    <ResultsContainer>
       {props.results && props.results.map(item => {
         return(
-          <a key={item.id} href={item.url}>
-            <img
-              src={item.images['fixed_height'].url}
-              alt={item.title}
-            />
-          </a>
+          <Result key={item.id}>
+            <a href={item.url}>
+              <img
+                src={item.images['fixed_height'].url}
+                alt={item.title}
+              />
+            </a>
+          </Result>
         )
       })}
 
@@ -19,7 +23,7 @@ function SearchResults(props) {
           No results for your search term. Please try again.
         </div>
       }
-    </div>
+    </ResultsContainer>
   );
 }
 
