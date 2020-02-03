@@ -26,7 +26,7 @@ function SearchForm() {
 
   const fetchSearchResults = () => {
     fetch(
-      `${ApiLink}${term}&api_key=${ApiKey}`
+      `${ApiLink}${term}&api_key=${ApiKey}&limit=24`
     )
       .then(response => response.json())
       .then(response => {
