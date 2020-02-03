@@ -19,8 +19,8 @@ function SearchResults(props) {
       })}
 
       {!props.results.length &&
-        <div>
-          No results for your search term. Please try again.
+        <div className="no-results">
+          No results match search term. Please try a different term.
         </div>
       }
     </ResultsContainer>

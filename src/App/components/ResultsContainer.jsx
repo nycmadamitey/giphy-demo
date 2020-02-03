@@ -5,6 +5,12 @@ const ResultsContainer = styled.div`
   flex-flow: row wrap;
   margin-left: -8px;
   margin-top: 35px;
+
+  .no-results {
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+  }
 `;
 
 export default ResultsContainer;
