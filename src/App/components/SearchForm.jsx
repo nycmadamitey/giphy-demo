@@ -65,7 +65,7 @@ function SearchForm() {
       }
       {showResults && <SearchResults results={results} />}
       {serverError &&
-        <ErrorText>Oops! Something went wrong. Refresh and try again.</ErrorText>
+        <ErrorText>Oops! Something went wrong with the Giphy Service. Please try again later.</ErrorText>
       }
     </>
   );
