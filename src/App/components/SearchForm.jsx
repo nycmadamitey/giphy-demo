@@ -5,6 +5,7 @@ import InputContainer from './InputContainer';
 import SearchInput from './SearchInput';
 import SearchButton from './SearchButton';
 import LoaderContainer from './LoaderContainer';
+import ErrorText from './ErrorText';
 import { ReactComponent as Loader } from '../images/loader.svg';
 
 function SearchForm() {
@@ -12,6 +13,7 @@ function SearchForm() {
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  const [serverError, setServerError] = useState(false);
   const rootElement = document.getElementById('root');
 
   const handleFormSubmit = (e) => {
@@ -35,7 +37,10 @@ function SearchForm() {
         setIsLoading(false);
         setShowResults(true);
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        setIsLoading(false);
+        setServerError(true);
+      });
   }
 
   return (
@@ -59,6 +64,9 @@ function SearchForm() {
         </LoaderContainer>
       }
       {showResults && <SearchResults results={results} />}
+      {serverError &&
+        <ErrorText>Oops! Something went wrong. Refresh and try again.</ErrorText>
+      }
     </>
   );
 }
